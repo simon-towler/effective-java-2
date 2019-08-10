@@ -52,6 +52,10 @@ public class Stack<E> {
     }
 
     // popAll method without wildcard type - deficient
+    /**
+     * Adds each elem of the stack to a given collection.
+     * @param dst
+     */
     public void popAll(Collection<E> dst) {
         while (!isEmpty())
             dst.add(pop());
@@ -106,6 +110,13 @@ public class Stack<E> {
         integerStack.pushAll(ints);// compiles ok
         // Now you can pass an ArrayList of Integer to a generic method
         // that expects an Iterable of any type extending E (where E is Number).
+
+        // print a second 9
+        Collection<Number> consumer = new ArrayList<Number>();
+        integerStack.popAll(consumer);
+        for (Number elem : consumer) {
+            System.out.println(elem);
+        }
     }
 
 
