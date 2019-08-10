@@ -1,6 +1,7 @@
 import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.EmptyStackException;
+import java.util.Collection;
 
 public class Stack<E> {
     //declare store for the stack elems
@@ -39,7 +40,6 @@ public class Stack<E> {
         elements[size++] = e;
     }
 
-    // pushAll method without wildcard type - deficient!
 
     /**
      * Takes sequence of elems and pushes onto stack
@@ -49,6 +49,12 @@ public class Stack<E> {
     public void pushAll(Iterable<? extends E> src) {
         for (E e: src)
             push(e);
+    }
+
+    // popAll method without wildcard type - deficient
+    public void popAll(Collection<E> dst) {
+        while (!isEmpty())
+            dst.add(pop());
     }
 
     /**
