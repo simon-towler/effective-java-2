@@ -108,12 +108,12 @@ public class Stack<E> {
             System.out.println(stack.pop());
 
         integerStack.pushAll(ints);// compiles ok
-        // Now you can pass an ArrayList of Integer to a generic method
+        // Above you see you can now pass an ArrayList of Integer to a generic method
         // that expects an Iterable of any type extending E (where E is Number).
 
         // print a second 9
-        Collection<Number> consumer = new ArrayList<Number>();
-        integerStack.popAll(consumer);
+        Collection<Object> consumer = new ArrayList<Object>();
+        integerStack.popAll(consumer);// now doesn't compile!
         for (Number elem : consumer) {
             System.out.println(elem);
         }
