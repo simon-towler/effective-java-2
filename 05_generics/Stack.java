@@ -11,7 +11,6 @@ public class Stack<E> {
     private static final int DEFAULT_INITIAL_CAPACITY = 16;
 
     //no-arg constructor
-
     /**
      * Constructs a new Stack object instance
      * with an empty array of Object elements of the DEFAULT_INITIAL_CAPACITY
@@ -46,7 +45,8 @@ public class Stack<E> {
      * Takes sequence of elems and pushes onto stack
      * @param src
      */
-    public void pushAll(Iterable<E> src) {
+    // Wildcard type for parameter that serves as an E producer
+    public void pushAll(Iterable<? extends E> src) {
         for (E e: src)
             push(e);
     }
@@ -97,9 +97,9 @@ public class Stack<E> {
         while (!stack.isEmpty())
             System.out.println(stack.pop());
 
-        pushAll(ints);// does not compile!
-        // you can't pass an ArrayList of Interger to a generic method
-        // that expects an Iterable of E (where E is Number)!
+        integerStack.pushAll(ints);// compiles ok
+        // Now you can pass an ArrayList of Integer to a generic method
+        // that expects an Iterable of any type extending E (where E is Number).
     }
 
 
