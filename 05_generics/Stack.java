@@ -86,15 +86,20 @@ public class Stack<E> {
                 stack.push(Integer.parseInt(arg));
         while (!stack.isEmpty())
             System.out.println(stack.pop());
+
         // print 9
         // demonstrates that Stack of Number works with subtype Integer
         Stack<Number> integerStack = new Stack<>();
         ArrayList<Integer> ints = new ArrayList<>(1);
         ints.add(9);
         for (Integer elem : ints)
-            stack.push(elem);
+            stack.push(elem); // you can push an Integer onto a Stack of Number
         while (!stack.isEmpty())
             System.out.println(stack.pop());
+
+        pushAll(ints);// does not compile!
+        // you can't pass an ArrayList of Interger to a generic method
+        // that expects an Iterable of E (where E is Number)!
     }
 
 
