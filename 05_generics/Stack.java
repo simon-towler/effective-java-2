@@ -1,8 +1,10 @@
-//Object-based collection - a prime candidate for generics
+//Initial attempt to generify Stack - won't compile!
 
-public class Stack {
+import java.util.Arrays;
+
+public class Stack<E> {
     //declare store for the stack elems
-    private Object[] elements;
+    private E[] elements;
     //init variable to hold stack size
     private int size = 0;
     //init stack capacity
@@ -16,7 +18,7 @@ public class Stack {
      */
     public Stack() {
         //init store for stack elems
-        elements = new Object[DEFAULT_INITIAL_CAPACITY];
+        elements = new E[DEFAULT_INITIAL_CAPACITY];
     }
 
 
@@ -28,7 +30,7 @@ public class Stack {
      * at position old-size + 1.
      * @param e Any Object to be pushed onto the Stack
      */
-    public void push(Object e) {
+    public void push(E e) {
         ensureCapacity();
         elements[size++] = e;
     }
@@ -38,10 +40,11 @@ public class Stack {
      * returning the top element.
      * @return
      */
-    public Object pop() {
-        if (size == 0)
-            throw new EmptyStackException();
-        Object result = elements[--size];
+    public E pop() {
+        if (size == 0) {
+            //throw new EmptyStackException();//TODO add EmptyStackException
+        }
+        E result = elements[--size];
             elements[size] = null; // Eliminate obsolete reference
         return result;
     }
@@ -59,6 +62,6 @@ public class Stack {
      */
     private void ensureCapacity() {
         if (elements.length == size)
-            elements = Arrays.copyOf(elements, 2 * size + i);
+            elements = Arrays.copyOf(elements, 2 * size + 1);
     }
 }
