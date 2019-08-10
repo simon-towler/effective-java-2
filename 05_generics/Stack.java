@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.EmptyStackException;
 
 public class Stack<E> {
@@ -76,12 +77,22 @@ public class Stack<E> {
      * Afterwards pops and prints each Stack elem.
      * Result is all args printed out in reverse order.
      * 1 2 3 4 5 becomes 5 4 3 2 1.
+     * Then prints 9.
      * @param args
      */
     public static void main(String[] args) {
         Stack<Number> stack = new Stack<>();
         for (String arg : args)
                 stack.push(Integer.parseInt(arg));
+        while (!stack.isEmpty())
+            System.out.println(stack.pop());
+        // print 9
+        // demonstrates that Stack of Number works with subtype Integer
+        Stack<Number> integerStack = new Stack<>();
+        ArrayList<Integer> ints = new ArrayList<>(1);
+        ints.add(9);
+        for (Integer elem : ints)
+            stack.push(elem);
         while (!stack.isEmpty())
             System.out.println(stack.pop());
     }
