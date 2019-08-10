@@ -40,6 +40,11 @@ public class Stack<E> {
     }
 
     // pushAll method without wildcard type - deficient!
+
+    /**
+     * Takes sequence of elems and pushes onto stack
+     * @param src
+     */
     public void pushAll(Iterable<E> src) {
         for (E e: src)
             push(e);
@@ -66,18 +71,19 @@ public class Stack<E> {
     //Little program to exercise our generic Stack
     /**
      * Main method.
-     * Instantiates a Stack of String.
-     * Pushes each String arg onto the Stack.
-     * Afterwards pops and prints each Stack elem in upper case.
-     * Result is all args printed out in reverse order in upper case.
+     * Instantiates a Stack of Number.
+     * Casts each String arg to Integer and pushes onto stack.
+     * Afterwards pops and prints each Stack elem.
+     * Result is all args printed out in reverse order.
+     * 1 2 3 4 5 becomes 5 4 3 2 1.
      * @param args
      */
     public static void main(String[] args) {
-        Stack<String> stack = new Stack<>();
+        Stack<Number> stack = new Stack<>();
         for (String arg : args)
-                stack.push(arg);
+                stack.push(Integer.parseInt(arg));
         while (!stack.isEmpty())
-            System.out.println(stack.pop().toUpperCase());
+            System.out.println(stack.pop());
     }
 
 
