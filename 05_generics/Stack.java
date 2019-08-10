@@ -1,4 +1,5 @@
-//has memory leak
+//Object-based collection - a prime candidate for generics
+
 public class Stack {
     //declare store for the stack elems
     private Object[] elements;
@@ -40,7 +41,13 @@ public class Stack {
     public Object pop() {
         if (size == 0)
             throw new EmptyStackException();
-        return elements[--size];
+        Object result = elements[--size];
+            elements[size] = null; // Eliminate obsolete reference
+        return result;
+    }
+
+    public boolean isEmpty() {
+        return size == 0;
     }
 
 
