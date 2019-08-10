@@ -1,5 +1,3 @@
-//Initial attempt to generify Stack - won't compile!
-
 import java.util.Arrays;
 import java.util.EmptyStackException;
 
@@ -23,6 +21,7 @@ public class Stack<E> {
     @SuppressWarnings("unchecked")
     public Stack() {
         //init store for stack elems
+        //Object[] cast unchecked (but known safe) to E[].
         elements = (E[]) new Object[DEFAULT_INITIAL_CAPACITY];
     }
 
@@ -38,6 +37,12 @@ public class Stack<E> {
     public void push(E e) {
         ensureCapacity();
         elements[size++] = e;
+    }
+
+    // pushAll method without wildcard type - deficient!
+    public void pushAll(Iterable<E> src) {
+        for (E e: src)
+            push(e);
     }
 
     /**
@@ -56,6 +61,23 @@ public class Stack<E> {
 
     public boolean isEmpty() {
         return size == 0;
+    }
+
+    //Little program to exercise our generic Stack
+    /**
+     * Main method.
+     * Instantiates a Stack of String.
+     * Pushes each String arg onto the Stack.
+     * Afterwards pops and prints each Stack elem in upper case.
+     * Result is all args printed out in reverse order in upper case.
+     * @param args
+     */
+    public static void main(String[] args) {
+        Stack<String> stack = new Stack<>();
+        for (String arg : args)
+                stack.push(arg);
+        while (!stack.isEmpty())
+            System.out.println(stack.pop().toUpperCase());
     }
 
 
