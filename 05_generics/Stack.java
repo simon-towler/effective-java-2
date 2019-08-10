@@ -51,16 +51,6 @@ public class Stack<E> {
             push(e);
     }
 
-    // popAll method without wildcard type - deficient
-    /**
-     * Adds each elem of the stack to a given collection.
-     * @param dst
-     */
-    public void popAll(Collection<E> dst) {
-        while (!isEmpty())
-            dst.add(pop());
-    }
-
     /**
      * Checks there are still element positions in the stack before
      * returning the top element.
@@ -73,6 +63,15 @@ public class Stack<E> {
         E result = elements[--size];
             elements[size] = null; // Eliminate obsolete reference
         return result;
+    }
+
+    /**
+     * Adds each elem of the stack to a given collection.
+     * @param dst
+     */
+    public void popAll(Collection<? super E> dst) {
+        while (!isEmpty())
+            dst.add(pop());
     }
 
     public boolean isEmpty() {
@@ -114,7 +113,7 @@ public class Stack<E> {
         // print a second 9
         Collection<Object> consumer = new ArrayList<Object>();
         integerStack.popAll(consumer);// now doesn't compile!
-        for (Number elem : consumer) {
+        for (Object elem : consumer) {
             System.out.println(elem);
         }
     }
